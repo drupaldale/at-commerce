@@ -13,7 +13,6 @@ function at_commerce_preprocess_html(&$vars) {
   // Load the media queries styles
   $media_queries_css = array(
     $theme_name . '.responsive.style.css',
-    $theme_name . '.responsive.gpanels.css'
   );
   load_subtheme_media_queries($media_queries_css, $theme_name);
 
@@ -40,59 +39,15 @@ function at_commerce_preprocess_html(&$vars) {
 
   // Add theme settings classes
   $settings_array = array(
-    'font_size',
     'body_background',
     'header_layout',
     'menu_bullets',
     'main_menu_alignment',
-    'image_alignment',
-    'site_name_case',
-    'site_name_weight',
-    'site_name_alignment',
-    'site_name_shadow',
-    'site_slogan_case',
-    'site_slogan_weight',
-    'site_slogan_alignment',
-    'site_slogan_shadow',
-    'page_title_case',
-    'page_title_weight',
-    'page_title_alignment',
-    'page_title_shadow',
-    'node_title_case',
-    'node_title_weight',
-    'node_title_alignment',
-    'node_title_shadow',
-    'comment_title_case',
-    'comment_title_weight',
-    'comment_title_alignment',
-    'comment_title_shadow',
-    'block_title_case',
-    'block_title_weight',
-    'block_title_alignment',
-    'block_title_shadow',
     'corner_radius_form_input_text',
     'corner_radius_form_input_submit',
   );
   foreach ($settings_array as $setting) {
     $vars['classes_array'][] = theme_get_setting($setting);
-  }
-
-  // Font family settings
-  $fonts = array(
-    'bf'  => 'base_font',
-    'snf' => 'site_name_font',
-    'ssf' => 'site_slogan_font',
-	  'mmf' => 'main_menu_font',
-    'ptf' => 'page_title_font',
-    'ntf' => 'node_title_font',
-    'ctf' => 'comment_title_font',
-    'btf' => 'block_title_font'
-  );
-  $families = get_font_families($fonts, $theme_key);
-  if (!empty($families)) {
-    foreach($families as $family) {
-      $vars['classes_array'][] = $family;
-    }
   }
 
   // Special case for PIE htc rounded corners, not all themes include this
@@ -271,7 +226,7 @@ function at_commerce_preprocess_field(&$vars) {
 function at_commerce_css_alter(&$css) {
   // Replace all Commerce module CSS files with our own for total control over all styles.
   // Commerce module uses the BAT CSS file naming convention (base, admin, theme).
-  
+
   $path = drupal_get_path('theme', 'at_commerce');
 
   // cart
@@ -383,58 +338,69 @@ function at_commerce_css_alter(&$css) {
 /**
  * Returns HTML for a breadcrumb trail.
  */
-function at_commerce_breadcrumb($vars) {
-  $breadcrumb = $vars['breadcrumb'];
-  $show_breadcrumb = theme_get_setting('breadcrumb_display');
-  if ($show_breadcrumb == 'yes') {
-    $show_breadcrumb_home = theme_get_setting('breadcrumb_home');
-    if (!$show_breadcrumb_home) {
-      array_shift($breadcrumb);
-    }
-    if (!empty($breadcrumb)) {
-      $heading = '<h2>' . t('You are here: ') . '</h2>';
-      $separator = filter_xss(theme_get_setting('breadcrumb_separator'));
-      $output = '';
-      foreach ($breadcrumb as $key => $val) {
-        if ($key == 0) {
-          $output .= '<li class="crumb">' . $val . '</li>';
-        }
-        else {
-          $output .= '<li class="crumb"><span>' . $separator . '</span>' . $val . '</li>';
-        }
-      }
-      return $heading . '<ol id="crumbs">' . $output . '</ol>';
-    }
-  }
-  return '';
-}
+//function at_commerce_breadcrumb($vars) {
+//  $breadcrumb = $vars['breadcrumb'];
+//  $show_breadcrumb = theme_get_setting('breadcrumb_display');
+//  if ($show_breadcrumb == 'yes') {
+//    $show_breadcrumb_home = theme_get_setting('breadcrumb_home');
+//    if (!$show_breadcrumb_home) {
+//      array_shift($breadcrumb);
+//    }
+//    if (!empty($breadcrumb)) {
+//      $heading = '<h2>' . t('You are here: ') . '</h2>';
+//      $separator = filter_xss(theme_get_setting('breadcrumb_separator'));
+//      $output = '';
+//      foreach ($breadcrumb as $key => $val) {
+//        if ($key == 0) {
+//          $output .= '<li class="crumb">' . $val . '</li>';
+//        }
+//        else {
+//          $output .= '<li class="crumb"><span>' . $separator . '</span>' . $val . '</li>';
+//        }
+//      }
+//      return $heading . '<ol id="crumbs">' . $output . '</ol>';
+//    }
+//  }
+//  return '';
+//}
 
 /**
  * Returns HTML for a fieldset.
  */
 function at_commerce_fieldset($vars) {
+
   $element = $vars['element'];
   element_set_attributes($element, array('id'));
   _form_set_class($element, array('form-wrapper'));
 
   $output = '<fieldset' . drupal_attributes($element['#attributes']) . '>';
+
   // add a class to the fieldset wrapper if a legend exists, in some instances they do not
   $class = "without-legend";
+
   if (!empty($element['#title'])) {
+
     // Always wrap fieldset legends in a SPAN for CSS positioning.
     $output .= '<legend><span class="fieldset-legend">' . $element['#title'] . '</span></legend>';
-    // add a class to the fieldset wrapper if a legend exists, in some instances they do not
+
+    // Add a class to the fieldset wrapper if a legend exists, in some instances they do not
     $class = 'with-legend';
   }
+
   $output .= '<div class="fieldset-wrapper ' . $class  . '">';
+
   if (!empty($element['#description'])) {
     $output .= '<div class="fieldset-description">' . $element['#description'] . '</div>';
   }
+
   $output .= $element['#children'];
+
   if (isset($element['#value'])) {
     $output .= $element['#value'];
   }
+
   $output .= '</div>';
   $output .= "</fieldset>\n";
+
   return $output;
 }

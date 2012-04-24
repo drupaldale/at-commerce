@@ -1,11 +1,11 @@
 <?php // AT Commerce ?>
-<div id="page-wrapper"><div id="page">
+<div id="page-wrapper"><div id="page" class="<?php print $classes; ?>">
 
   <?php if($page['draw']): ?>
     <div id="draw-wrapper">
       <div class="container clearfix">
         <div id="draw"><?php print render($page['draw']); ?></div>
-      </div> 
+      </div>
     </div>
   <?php endif; ?>
 
@@ -21,22 +21,36 @@
     <div class="container clearfix">
       <header class="clearfix">
 
+
         <div id="branding" class="clearfix<?php print $branding_classes ? ' ' . $branding_classes : ''; ?>">
+
+
           <?php if ($linked_site_logo): ?>
+
             <div id="logo"><?php print $linked_site_logo; ?></div>
+
           <?php endif; ?>
 
+
+
           <?php if ($site_name || $site_slogan): ?>
+
             <hgroup<?php if (!$site_slogan && $hide_site_name): ?> class="<?php print $visibility; ?>"<?php endif; ?>>
+
               <?php if ($site_name): ?>
                 <h1 id="site-name"<?php if ($hide_site_name): ?> class="<?php print $visibility; ?>"<?php endif; ?>><?php print $site_name; ?></h1>
               <?php endif; ?>
+
               <?php if ($site_slogan): ?>
                 <h2 id="site-slogan"><?php print $site_slogan; ?></h2>
               <?php endif; ?>
+
             </hgroup>
           <?php endif; ?>
-        </div>
+
+
+        </div> <!-- // end branding -->
+
 
         <?php print render($page['header']); ?>
 

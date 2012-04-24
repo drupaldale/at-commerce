@@ -1,7 +1,4 @@
 /* Base */
-html {
-  font-size: 81.3%; /* 13px base font size */
-}
 body {
   line-height: 1.5;
 }
@@ -14,20 +11,21 @@ h1, h2, h3, h4, h5, h6, h1 img, h2 img, h3 img, h4 img, h5 img, h6 img, em, dfn,
 
 /* Headings */
 h1 {
-  font-size: 2.308em; /* 30px */
+  font-size: 2em;
 }
 h2 {
-  font-size: 1.538em; /* 20px */
+  font-size: 1.5em;
 }
 h3 {
-  font-size: 1.231em; /* 16px */
+  font-size: 1.25em;
 }
 h4 {
-  font-size: 1.077em; /* 14px */
+  font-size: 1.1em;
 }
 h5, h6 {
-  font-size: 1em; /* 13px */
+  font-size: 1em;
 }
+
 p {
   margin: 0 0 0.75em;
   padding: 0;
