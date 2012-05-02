@@ -134,7 +134,7 @@ function at_commerce_process_page(&$vars) {
 
   // We some extra classes to support the fancy branding layouts
   $branding_classes = array();
-  $branding_classes[] = $vars['linked_site_logo'] ? 'with-logo' : 'no-logo';
+  $branding_classes[] = $vars['site_logo'] ? 'with-logo' : 'no-logo';
   $branding_classes[] = !$vars['hide_site_name'] ? 'with-site-name' : 'site-name-hidden';
   $branding_classes[] = $vars['site_slogan'] ? 'with-site-slogan' : 'no-slogan';
   $vars['branding_classes'] = implode(' ', $branding_classes);
