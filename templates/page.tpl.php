@@ -61,7 +61,7 @@
 
     <?php if ($page['three_33_first'] || $page['three_33_second'] || $page['three_33_third']): ?>
       <div id="sub-panels-wrapper">
-        <div class="three-3x33 gpanel clearfix">
+        <div class="three-3x33 at-panel gpanel clearfix">
           <?php print render($page['three_33_first']); ?>
           <?php print render($page['three_33_second']); ?>
           <?php print render($page['three_33_third']); ?>
@@ -88,7 +88,7 @@
         <?php print render($page['highlighted']); ?>
 
         <?php if ($page['two_50_first'] || $page['two_50_second']): ?>
-          <div class="two-50 gpanel clearfix">
+          <div class="two-50 at-panel gpanel clearfix">
             <?php print render($page['two_50_first']); ?>
             <?php print render($page['two_50_second']); ?>
           </div>
@@ -143,12 +143,16 @@
   <?php if ($page['five_first'] || $page['five_second'] || $page['five_third'] || $page['five_fourth'] || $page['five_fifth']): ?>
     <div id="quint-panels-wrapper"><div class="texture-overlay">
       <div class="container clearfix">
-        <div class="five-5x20 gpanel clearfix">
-          <?php print render($page['five_first']); ?>
-          <?php print render($page['five_second']); ?>
-          <?php print render($page['five_third']); ?>
-          <?php print render($page['five_fourth']); ?>
-          <?php print render($page['five_fifth']); ?>
+        <div class="at-panel gpanel panel-display five-5x20 clearfix">
+          <div class="panel-row row-1 clearfix">
+            <?php print render($page['five_first']); ?>
+            <?php print render($page['five_second']); ?>
+          </div>
+          <div class="panel-row row-2 clearfix">
+            <?php print render($page['five_third']); ?>
+            <?php print render($page['five_fourth']); ?>
+            <?php print render($page['five_fifth']); ?>
+          </div>
         </div>
       </div>
     </div></div>
@@ -157,11 +161,15 @@
   <div id="page-footer">
     <?php if ($page['four_first'] || $page['four_second'] || $page['four_third'] || $page['four_fourth']): ?>
       <div id="footer-panels-wrapper"><div class="container clearfix">
-        <div class="four-4x25 gpanel clearfix">
-          <?php print render($page['four_first']); ?>
-          <?php print render($page['four_second']); ?>
-          <?php print render($page['four_third']); ?>
-          <?php print render($page['four_fourth']); ?>
+        <div class="at-panel gpanel panel-display four-4x25 clearfix">
+          <div class="panel-row row-1 clearfix">
+            <?php print render($page['four_first']); ?>
+            <?php print render($page['four_second']); ?>
+          </div>
+          <div class="panel-row row-2 clearfix">
+            <?php print render($page['four_third']); ?>
+            <?php print render($page['four_fourth']); ?>
+          </div>
         </div>
       </div></div>
     <?php endif; ?>
