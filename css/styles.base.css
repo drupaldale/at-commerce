@@ -594,6 +594,17 @@ article .comment-content {
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* Signatures */
+.user-signature p {
+  font-style: italic;
+  text-align: right;
+  margin: 0;
+}
+.user-signature p:before,
+.user-signature p:after {
+  content: '"';
+}
+
 /* Blocks */
 .block {
   margin-bottom: 20px;
