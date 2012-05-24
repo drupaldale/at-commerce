@@ -3,10 +3,50 @@ body {
   line-height: 1.5;
 }
 
+/* Gutters - if gutters are set in theme settings they will override these
+   values: see Extensions > Modify Output > Design */
+#main-content,
+.block-inner,
+.pane-inner,
+.menu-wrapper,
+.branding-elements,
+.breadcrumb-wrapper,
+.attribution,
+.at-panel .rounded-corner,
+div.messages {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Panel pages need negative margin equal to the gutter width applied to #content,
+  this is taken care of in theme settings as per above for normal gutters */
+.page-panels #content {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
 /* Micro reset */
-h1, h2, h3, h4, h5, h6, h1 img, h2 img, h3 img, h4 img, h5 img, h6 img, em, dfn, del, ins {
+h1, h2, h3, h4, h5, h6,
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img,
+em, dfn, del, ins,
+figure, figcaption {
   margin: 0;
   padding: 0;
+}
+
+/* Reset HTML5 elements */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 
 /* Headings */
@@ -245,6 +285,7 @@ audio:not([controls]) {
 input.form-text,
 textarea {
   padding: 4px;
+  max-width: 100%;
 }
 select {
   padding: 3px;
@@ -389,8 +430,9 @@ html.js #toggle-wrapper {
 }
 #site-name,
 #site-slogan {
-  display: inline;
+  display: inline-block;
   line-height: 1;
+  padding-top: 5px;
 }
 #branding.with-logo.site-name-hidden.with-site-slogan hgroup,
 #branding.with-logo.site-name-hidden.with-site-slogan hgroup #site-slogan {
@@ -404,38 +446,60 @@ html.js #toggle-wrapper {
   padding-top: 5px;
 }
 
-/* Menu bar */
-#nav-wrapper {
+/**
+ * Main menu region
+ * The theme can't do much, otherwise we run into issues with Superfish which
+ * is more important to support out of the box, we try always to work with
+ * Superfish and not fight it; bertha, its bigger than both of us...
+ */
+#menu-wrapper {
   margin: 0;
   padding: 0;
   position: relative;
-  top: 1.5em;
-  min-height: 3em;
+  z-index: 100;
+  top: 1.25em;
+  min-height: 2.5em;
   clear: both;
   -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
 }
-#menu-bar {}
-.nav ul,
-.nav ul li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.nav .block {
-  margin: 0 5px;
-}
-.nav ul li,
-.nav ul li a {
-  line-height: 3em;
-  float: left;
-  display: block;
-}
-.nav ul li a {
-  padding: 0 10px;
+#menu-bar .block {
+  position: static;
   text-transform: uppercase;
-  font-weight: 700;
+}
+#menu-bar ul ul {
+  margin-left: 0;
+}
+#menu-bar .sf-menu {
+  margin-bottom: 0;
+}
+#menu-bar .block-menu,
+#menu-bar .block-menu ul,
+#menu-bar .block-menu ul li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav .block-menu ul li {
+  float: left;
+}
+.nav .block-menu ul {
+  float: left;
+}
+.nav .block-menu ul ul {
+  padding-left: 0;
+}
+.nav .block-menu ul a {
+  padding: 0.75em 1em;
+  text-decoration: none;
+}
+.nav .block-menu ul li:hover,
+.nav .block-menu ul li.sfHover,
+.nav .block-menu ul a:focus,
+.nav .block-menu ul a:hover,
+.nav .block-menu ul a:active {
+  outline: 0;
 }
 
 /* Wrapper white space */
@@ -494,9 +558,13 @@ article .field {
 .field-type-taxonomy-term-reference li {
   list-style: none;
 }
+.field-type-taxonomy-term-reference.field-label-inline li {
+  display: inline;
+  margin-right: 8px;
+}
 
 /* Articles */
-.article,
+.node,
 .comment {
   margin-bottom: 25px;
 }
@@ -504,7 +572,7 @@ article header {
  position: relative;
  margin-bottom: 10px;
 }
-.article-title {
+.node-title {
   line-height: 1.4;
 }
 article .submitted {
@@ -514,7 +582,7 @@ article .submitted {
   margin: 0;
   position: relative;
 }
-article .article-content {
+article .node-content {
   padding: 10px 0;
 }
 article nav {
@@ -536,13 +604,13 @@ article ul.links a {
   padding: 0;
   text-transform: capitalize;
 }
-.article header.with-picture {
+.node header.with-picture {
   height: 3.5em;
   height: auto !important;
   min-height: 3.5em;
   padding-left: 60px;
 }
-.article header .user-picture {
+.node header .user-picture {
   left: 0;
   top: 9px;
   position: absolute;
@@ -550,7 +618,7 @@ article ul.links a {
   max-height: 47px;
   overflow: hidden;
 }
-.article header .user-picture img {
+.node header .user-picture img {
   display: block;
   margin: 0;
   max-width: 47px;
@@ -589,6 +657,7 @@ article .comment-content {
   font-style: normal;
   line-height: 1.3;
   padding: 0 4px 2px;
+  margin: 5px 0 0 0;
   -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -611,7 +680,6 @@ article .comment-content {
 }
 .three-3x33 .block-inner,
 .sidebar .block-inner {
-  padding: 0 10px;
 }
 .region-tertiary-content .block {
   margin-bottom: 0;
@@ -671,8 +739,6 @@ ol#crumbs li.crumb {
 
 /* Tasks */
 #tasks {
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 /* Local task tabs */

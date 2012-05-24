@@ -19,37 +19,16 @@
 .views-slideshow-controls-top {}
 .views-slideshow-controls-bottom {}
 
-/* Superfish */
-.sf-menu a {
-  border: 0;
-}
-.sf-menu li:hover ul,
-.sf-menu li.sfHover ul {
-  top: 3em;
-  margin: 0 0 0 10px;
-  padding: 0;
-  line-height: 2em;
-}
-.sf-menu li:hover ul ul,
-.sf-menu li.sfHover ul ul{
-  top: 0;
-  margin: 0;
-  line-height: 2em;
-}
-.sf-menu li ul li,
-.sf-menu li ul a {
-  line-height: 2em;
-}
 
-.nav .contextual-links-wrapper {
-  display: none;
-}
-/* sf-horizontal - classic drop menu style */
+
+/* Superfish
+   sf-horizontal - classic drop menu style */
 .nav .block-superfish,
 .sf-horizontal {
   padding: 0;
   margin: 0;
 }
+
 
 /* Quicktabs */
 .block-quicktabs .block-inner .block-inner,

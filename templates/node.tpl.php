@@ -41,7 +41,5 @@
 
     <?php print render($content['comments']); ?>
 
-    <?php // print dsm($node); // debug using Devel module ?>
-
   </div>
 </article>

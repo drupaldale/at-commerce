@@ -86,6 +86,7 @@ function at_commerce_form_system_theme_settings_alter(&$form, &$form_state) {
         )
       )
     );
+
     // Draw
     $form['at']['draw'] = array(
       '#type' => 'fieldset',
@@ -98,6 +99,7 @@ function at_commerce_form_system_theme_settings_alter(&$form, &$form_state) {
       '#size' => 15,
       '#default_value' => theme_get_setting('toggle_text'),
     );
+
     // Header layout
     $form['at']['header'] = array(
       '#type' => 'fieldset',
@@ -114,6 +116,7 @@ function at_commerce_form_system_theme_settings_alter(&$form, &$form_state) {
         'hl-c' => t('Centered'),
       ),
     );
+
     // Slider
     $form['at']['slideshow'] = array(
       '#type' => 'fieldset',
@@ -193,6 +196,7 @@ function at_commerce_form_system_theme_settings_alter(&$form, &$form_state) {
         )
       )
     );
+
     $form['at']['corners'] = array(
       '#type' => 'fieldset',
       '#title' => t('Rounded corners'),
@@ -235,21 +239,12 @@ function at_commerce_form_system_theme_settings_alter(&$form, &$form_state) {
         'isrc-12' => t('12px'),
       ),
     );
-    //$form['at']['corners']['htc'] = array(
-    //  '#type' => 'fieldset',
-    //  '#title' => t('IE corners'),
-    //);
-    //$form['at']['corners']['htc']['ie_corners'] = array(
-    //  '#type' => 'checkbox',
-    //  '#title' => t('Enable rounded corners for Internet Explorer 6, 7 and 8'),
-    //  '#default_value' => theme_get_setting('ie_corners'),
-    //  '#description' => t('<p>NOTE: For this to work you must download install the <a href="!link">CSS3PIE</a> library to <code>sites/all/libraries/PIE</code>.</p><p>The path should be like this: <code>sites/all/libraries/PIE/PIE.htc</code></p><p>Then you MUST change the path in <strong>ie-htc.css</strong> to be absolute and match this path, e.g. <code>http://examplesite.com/sites/all/libraries/PIE/PIE.htc</code> - look in the <code>/css</code> folder to find this file.<p>Usage is at your own risk. Elements such as text inside other JS items such as drop menus or slideshows may be degraded in Internet Explorer.</p>', array('!link' => 'http://css3pie.com/')),
-    //);
     $form['at']['pagestyles'] = array(
       '#type' => 'fieldset',
       '#title' => t('Textures'),
       '#description' => t('<h3>Textures</h3><p>Textures are small, semi-transparent images that tile to fill the entire background.</p>'),
     );
+
     // AT Commerce does not support box shadows, they dont work well with the overall design.
     $form['at']['pagestyles']['textures'] = array(
       '#type' => 'fieldset',
@@ -271,6 +266,7 @@ function at_commerce_form_system_theme_settings_alter(&$form, &$form_state) {
         'bb-bd'  => t('Big dots'),
       ),
     );
+
     $form['at']['menu_styles'] = array(
       '#type' => 'fieldset',
       '#title' => t('Menu Styles'),
@@ -290,6 +286,7 @@ function at_commerce_form_system_theme_settings_alter(&$form, &$form_state) {
         'mma-r' => t('Right'),
       ),
     );
+
     $form['at']['menu_styles']['bullets'] = array(
       '#type' => 'fieldset',
       '#title' => t('Menu Bullets'),

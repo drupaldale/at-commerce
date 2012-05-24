@@ -180,6 +180,11 @@ function at_commerce_preprocess_node(&$vars) {
 function at_commerce_preprocess_comment(&$vars) {
   // Remove the horrid inline class, again, for gawds sake
   $vars['content']['links']['#attributes']['class'] = 'links';
+
+  // Picture classes for the header
+  if ($vars['picture']) {
+    $vars['header_attributes_array']['class'][] = 'with-picture';
+  }
 }
 
 /**
