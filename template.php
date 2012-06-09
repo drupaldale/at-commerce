@@ -154,6 +154,11 @@ function at_commerce_preprocess_node(&$vars) {
   // Clearfix node content wrapper
   $vars['content_attributes_array']['class'][] = 'clearfix';
 
+  // Add class if user picture exists
+  if ($vars['user_picture']) {
+    $vars['header_attributes_array']['class'][] = 'with-picture';
+  }
+
   // Add classes for the slideshow node type
   if (theme_get_setting('show_slideshow') == 1) {
     if ($vars['node']->type == 'slideshow') {

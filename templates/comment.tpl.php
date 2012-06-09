@@ -4,6 +4,7 @@
     <?php print $unpublished; ?>
     
     <?php print render($title_prefix); ?>
+
     <?php if ($title || $picture || $new): ?>
     <header<?php print $header_attributes; ?>>
 
@@ -20,6 +21,7 @@
       <p class="submitted"><?php print $submitted; ?></p>
     </header>
     <?php endif; ?>
+
     <?php print render($title_suffix); ?>
 
     <div<?php print $content_attributes; ?>>
