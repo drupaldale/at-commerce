@@ -30,7 +30,10 @@
   ;
   ; ie_stylesheets[screen][IE 7] = css/ie7.css
 
-
+  ie_stylesheets[screen][IE 6]     = css/ie-6.css
+  ie_stylesheets[screen][lte IE 7] = css/ie-lte-7.css
+  ie_stylesheets[screen][IE 8]     = css/ie-8.css
+  ie_stylesheets[screen][lte IE 9] = css/ie-lte-9.css
 
 ;----------// Scripts
 

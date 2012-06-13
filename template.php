@@ -10,21 +10,6 @@ function at_commerce_preprocess_html(&$vars) {
   $theme_name = 'at_commerce';
   $path_to_theme = drupal_get_path('theme', $theme_name);
 
-  // Load the media queries styles
-  $media_queries_css = array(
-    $theme_name . '.responsive.style.css',
-  );
-  load_subtheme_media_queries($media_queries_css, $theme_name);
-
-  // Load IE specific stylesheets
-  $ie_files = array(
-    'IE 6'     => 'ie-6.css',
-    'lte IE 7' => 'ie-lte-7.css',
-    'IE 8'     => 'ie-8.css',
-    'lte IE 9' => 'ie-lte-9.css',
-  );
-  load_subtheme_ie_styles($ie_files, $theme_name);
-
   // Add a class for the active color scheme
   if (module_exists('color')) {
     $class = check_plain(get_color_scheme_name($theme_key));
@@ -148,7 +133,8 @@ function at_commerce_process_page(&$vars) {
  * Override or insert variables into the node template.
  */
 function at_commerce_preprocess_node(&$vars) {
-  // Remove the horrid inline class, it does wanky things like display:inline on the UL, whack eh?
+
+  // Remove the inline class
   $vars['content']['links']['#attributes']['class'] = 'links';
 
   // Clearfix node content wrapper
@@ -183,7 +169,8 @@ function at_commerce_preprocess_node(&$vars) {
  * Override or insert variables into the comment template.
  */
 function at_commerce_preprocess_comment(&$vars) {
-  // Remove the horrid inline class, again, for gawds sake
+
+  // Remove the inline class
   $vars['content']['links']['#attributes']['class'] = 'links';
 
   // Picture classes for the header
@@ -196,6 +183,7 @@ function at_commerce_preprocess_comment(&$vars) {
  * Override or insert variables into the block template
  */
 function at_commerce_preprocess_block(&$vars) {
+
   if ($vars['block']->module == 'superfish' || $vars['block']->module == 'nice_menu') {
     $vars['content_attributes_array']['class'][] = 'clearfix';
   }
@@ -208,35 +196,12 @@ function at_commerce_preprocess_block(&$vars) {
 }
 
 /**
- * Override or insert variables into the field template.
- */
-function at_commerce_preprocess_field(&$vars) {
-  $element = $vars['element'];
-  $vars['image_caption_teaser'] = FALSE;
-  $vars['image_caption_full'] = FALSE;
-  $vars['field_view_mode'] = '';
-  $vars['classes_array'][] = 'view-mode-'. $element['#view_mode'];
-  if(theme_get_setting('image_caption_teaser') == 1) {
-    $vars['image_caption_teaser'] = TRUE;
-  }
-  if(theme_get_setting('image_caption_full') == 1) {
-    $vars['image_caption_full'] = TRUE;
-  }
-  $vars['field_view_mode'] = $element['#view_mode'];
-  // Vars and settings for the slideshow, we theme this directly in the field template
-  $vars['show_slideshow_caption'] = FALSE;
-  if (theme_get_setting('show_slideshow_caption') == TRUE) {
-   $vars['show_slideshow_caption'] = TRUE;
-  }
-}
-
-/**
  * Implements hook_css_alter().
  */
 function at_commerce_css_alter(&$css) {
+
   // Replace all Commerce module CSS files with our own for total control over all styles.
   // Commerce module uses the BAT CSS file naming convention (base, admin, theme).
-
   $path = drupal_get_path('theme', 'at_commerce');
 
   // cart
@@ -344,35 +309,6 @@ function at_commerce_css_alter(&$css) {
     $css[$tax_theme]['group'] = 1;
   }
 }
-
-/**
- * Returns HTML for a breadcrumb trail.
- */
-//function at_commerce_breadcrumb($vars) {
-//  $breadcrumb = $vars['breadcrumb'];
-//  $show_breadcrumb = theme_get_setting('breadcrumb_display');
-//  if ($show_breadcrumb == 'yes') {
-//    $show_breadcrumb_home = theme_get_setting('breadcrumb_home');
-//    if (!$show_breadcrumb_home) {
-//      array_shift($breadcrumb);
-//    }
-//    if (!empty($breadcrumb)) {
-//      $heading = '<h2>' . t('You are here: ') . '</h2>';
-//      $separator = filter_xss(theme_get_setting('breadcrumb_separator'));
-//      $output = '';
-//      foreach ($breadcrumb as $key => $val) {
-//        if ($key == 0) {
-//          $output .= '<li class="crumb">' . $val . '</li>';
-//        }
-//        else {
-//          $output .= '<li class="crumb"><span>' . $separator . '</span>' . $val . '</li>';
-//        }
-//      }
-//      return $heading . '<ol id="crumbs">' . $output . '</ol>';
-//    }
-//  }
-//  return '';
-//}
 
 /**
  * Returns HTML for a fieldset.
