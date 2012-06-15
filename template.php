@@ -5,6 +5,7 @@
  * Override or insert variables into the html template.
  */
 function at_commerce_preprocess_html(&$vars) {
+
   global $theme_key;
 
   $theme_name = 'at_commerce';
@@ -104,6 +105,7 @@ function at_commerce_preprocess_html(&$vars) {
  * Override or insert variables into the html template.
  */
 function at_commerce_process_html(&$vars) {
+  // Hook the color module
   if (module_exists('color')) {
     _color_html_alter($vars);
   }
@@ -113,6 +115,8 @@ function at_commerce_process_html(&$vars) {
  * Override or insert variables into the page template.
  */
 function at_commerce_process_page(&$vars) {
+
+  // Hook the color module
   if (module_exists('color')) {
     _color_page_alter($vars);
   }
@@ -192,6 +196,34 @@ function at_commerce_preprocess_block(&$vars) {
   }
   if ($vars['block']->region == 'menu_bar' || $vars['block']->region == 'menu_bar_top') {
     $vars['title_attributes_array']['class'][] = 'element-invisible';
+  }
+}
+
+/**
+ * Override or insert variables into the field template.
+ */
+function at_commerce_preprocess_field(&$vars) {
+
+  $element = $vars['element'];
+  $vars['image_caption_teaser'] = FALSE;
+  $vars['image_caption_full'] = FALSE;
+  $vars['field_view_mode'] = '';
+  $vars['classes_array'][] = 'view-mode-'. $element['#view_mode'];
+
+  if(theme_get_setting('image_caption_teaser') == 1) {
+    $vars['image_caption_teaser'] = TRUE;
+  }
+  if(theme_get_setting('image_caption_full') == 1) {
+    $vars['image_caption_full'] = TRUE;
+  }
+
+  $vars['field_view_mode'] = $element['#view_mode'];
+
+  // Vars and settings for the slideshow, we theme this directly in the field template
+  $vars['show_slideshow_caption'] = FALSE;
+
+  if (theme_get_setting('show_slideshow_caption') == TRUE) {
+   $vars['show_slideshow_caption'] = TRUE;
   }
 }
 
@@ -307,6 +339,61 @@ function at_commerce_css_alter(&$css) {
   if (isset($css[$tax_theme])) {
     $css[$tax_theme]['data'] = $path . '/css/commerce/commerce_tax.theme.css';
     $css[$tax_theme]['group'] = 1;
+  }
+}
+
+/**
+ * Returns HTML for a breadcrumb trail.
+ */
+function at_commerce_breadcrumb($vars) {
+
+  global $theme_key;
+  $theme_name = $theme_key;
+
+  $breadcrumb = $vars['breadcrumb'];
+
+  if (at_get_setting('breadcrumb_display', $theme_name) === 1) {
+
+    if (at_get_setting('breadcrumb_home', $theme_name) === 0) {
+      array_shift($breadcrumb);
+    }
+
+    // Remove the rather pointless breadcrumbs for reset password and user
+    // register pages, they link to the page you are on.
+    if (arg(0) === 'user' && (arg(1) === 'password' || arg(1) === 'register')) {
+      array_pop($breadcrumb);
+    }
+
+    if (!empty($breadcrumb)) {
+      $heading = '<h2>' . t('You are here') . '</h2>';
+      $separator = filter_xss_admin(at_get_setting('breadcrumb_separator', $theme_name));
+
+      $class = 'crumb';
+      end($breadcrumb);
+      $last = key($breadcrumb);
+
+      $output = '';
+      $output = '<div id="breadcrumb" class="clearfix"><nav class="breadcrumb-wrapper clearfix" role="navigation">';
+      $output .= $heading;
+      $output .= '<ol id="crumbs" class="clearfix">';
+      foreach ($breadcrumb as $key => $val) {
+        if ($key == $last && count($breadcrumb) != 1) {
+          $class = 'crumb crumb-last';
+        }
+        if ($key == 0) {
+          $output .= '<li class="' . $class . ' crumb-first">' . $val . '</li>';
+        }
+        else {
+          $output .= '<li class="' . $class . '"><span>' . $separator . '</span>' . $val . '</li>';
+        }
+      }
+      $output .= '</ol></nav></div>';
+
+      return $output;
+    }
+  }
+  else {
+    return;
   }
 }
 
