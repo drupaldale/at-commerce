@@ -53,16 +53,16 @@ function at_commerce_preprocess_html(&$vars) {
   // Content displays
   $show_frontpage_grid = theme_get_setting('content_display_grids_frontpage') == 1 ? TRUE : FALSE;
   $show_taxopage_grid = theme_get_setting('content_display_grids_taxonomy_pages') == 1 ? TRUE : FALSE;
-  if ($show_frontpage_grid == TRUE || $show_taxopage_grid == TRUE) {drupal_add_js($path_to_theme . '/js/equalheights.js');}
+  if ($show_frontpage_grid == TRUE || $show_taxopage_grid == TRUE) {drupal_add_js($path_to_theme . '/scripts/equalheights.js');}
   if ($show_frontpage_grid == TRUE) {
     $cols_fpg = theme_get_setting('content_display_grids_frontpage_colcount');
     $vars['classes_array'][] = $cols_fpg;
-    drupal_add_js($path_to_theme . '/js/eq.fp.grid.js');
+    drupal_add_js($path_to_theme . '/scripts/eq.fp.grid.js');
   }
   if ($show_taxopage_grid == TRUE) {
     $cols_tpg = theme_get_setting('content_display_grids_taxonomy_pages_colcount');
     $vars['classes_array'][] = $cols_tpg;
-    drupal_add_js($path_to_theme . '/js/eq.tp.grid.js');
+    drupal_add_js($path_to_theme . '/scripts/eq.tp.grid.js');
   }
 
   // Do stuff for the slideshow
@@ -75,8 +75,8 @@ function at_commerce_preprocess_html(&$vars) {
       'every_page' => TRUE,
       )
     );
-    drupal_add_js($path_to_theme . '/js/jquery.flexslider-min.js');
-    drupal_add_js($path_to_theme . '/js/slider.options.js');
+    drupal_add_js($path_to_theme . '/scripts/jquery.flexslider-min.js');
+    drupal_add_js($path_to_theme . '/scripts/slider.options.js');
 
     // Add some classes to do evil hiding of elements with CSS...
     if (theme_get_setting('show_slideshow_navigation_controls') == 0) {
@@ -97,7 +97,7 @@ function at_commerce_preprocess_html(&$vars) {
   }
 
   // Draw stuff
-  drupal_add_js($path_to_theme . '/js/draw.js');
+  drupal_add_js($path_to_theme . '/scripts/draw.js');
 
 }
 
@@ -187,7 +187,6 @@ function at_commerce_preprocess_comment(&$vars) {
  * Override or insert variables into the block template
  */
 function at_commerce_preprocess_block(&$vars) {
-
   if ($vars['block']->module == 'superfish' || $vars['block']->module == 'nice_menu') {
     $vars['content_attributes_array']['class'][] = 'clearfix';
   }
@@ -196,34 +195,6 @@ function at_commerce_preprocess_block(&$vars) {
   }
   if ($vars['block']->region == 'menu_bar' || $vars['block']->region == 'menu_bar_top') {
     $vars['title_attributes_array']['class'][] = 'element-invisible';
-  }
-}
-
-/**
- * Override or insert variables into the field template.
- */
-function at_commerce_preprocess_field(&$vars) {
-
-  $element = $vars['element'];
-  $vars['image_caption_teaser'] = FALSE;
-  $vars['image_caption_full'] = FALSE;
-  $vars['field_view_mode'] = '';
-  $vars['classes_array'][] = 'view-mode-'. $element['#view_mode'];
-
-  if(theme_get_setting('image_caption_teaser') == 1) {
-    $vars['image_caption_teaser'] = TRUE;
-  }
-  if(theme_get_setting('image_caption_full') == 1) {
-    $vars['image_caption_full'] = TRUE;
-  }
-
-  $vars['field_view_mode'] = $element['#view_mode'];
-
-  // Vars and settings for the slideshow, we theme this directly in the field template
-  $vars['show_slideshow_caption'] = FALSE;
-
-  if (theme_get_setting('show_slideshow_caption') == TRUE) {
-   $vars['show_slideshow_caption'] = TRUE;
   }
 }
 

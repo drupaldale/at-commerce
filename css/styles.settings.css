@@ -1,7 +1,7 @@
 /* AT Commerce Settings Styles */
 
 /* Frontpage and Taxonomy Grids */
-#block-system-main.content-display-grid  article.article  {
+#main-content.content-display-grid  article.article  {
   float: left;
   margin: 0 0 10px;
   min-width: 150px; /* this ensures 2cols at 320px and 4 cols at 480px (smartphone displays) and allows for the maximum setting of 8 cols at widths like 1280px or more */
@@ -27,32 +27,32 @@
   margin-left: 0;
   margin-right: 0;
 }
-body.front.fpcc-2 #block-system-main article.article,
-body.page-taxonomy.tpcc-2 #block-system-main article.article {
+body.front.fpcc-2 #main-content article.article,
+body.page-taxonomy.tpcc-2 #main-content article.article {
   width: 50%;
 }
-body.front.fpcc-3 #block-system-main article.article,
-body.page-taxonomy.tpcc-3 #block-system-main article.article {
+body.front.fpcc-3 #main-content article.article,
+body.page-taxonomy.tpcc-3 #main-content article.article {
   width: 33.33333333333333%;
 }
 body.front.fpcc-4 #block-system-main article.article,
-body.page-taxonomy.tpcc-4 #block-system-main article.article {
+body.page-taxonomy.tpcc-4 #main-content article.article {
   width: 25%;
 }
-body.front.fpcc-5 #block-system-main article.article,
-body.page-taxonomy.tpcc-5 #block-system-main article.article {
+body.front.fpcc-5 #main-content article.article,
+body.page-taxonomy.tpcc-5 #main-content article.article {
   width: 20%;
 }
-body.front.fpcc-6 #block-system-main article.article,
-body.page-taxonomy.tpcc-6 #block-system-main article.article {
+body.front.fpcc-6 #main-content article.article,
+body.page-taxonomy.tpcc-6 #main-content article.article {
   width: 16.66666666666667%;
 }
-body.front.fpcc-7 #block-system-main article.article,
-body.page-taxonomy.tpcc-7 #block-system-main article.article {
+body.front.fpcc-7 #main-content article.article,
+body.page-taxonomy.tpcc-7 #main-content article.article {
   width: 14.28571428571429%;
 }
-body.front.fpcc-8 #block-system-main article.article,
-body.page-taxonomy.tpcc-8 #block-system-main article.article {
+body.front.fpcc-8 #main-content article.article,
+body.page-taxonomy.tpcc-8 #main-content article.article {
   width: 12.5%;
 }
 

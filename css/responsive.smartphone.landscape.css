@@ -41,9 +41,6 @@ header#header h2#site-slogan {
   clear: both;
   float: none;
 }
-#menu-bar .menu-wrapper ul ul {
-  display: none !important;
-}
 #menu-bar .menu-wrapper > ul,
 #menu-bar .menu-wrapper > ul > li {
   display: block;

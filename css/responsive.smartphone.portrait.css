@@ -63,9 +63,6 @@ header#header h2#site-slogan {
   height: auto;
   padding: 2px 0;
 }
-#menu-bar .menu-wrapper ul ul {
-  display: none !important;
-}
 .region-header .block {
   overflow: hidden;
 }

@@ -1,6 +1,19 @@
 /* Base */
-body {
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
   line-height: 1.5;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility\9; /* Only IE, can mess with Android */
 }
 
 /* Gutters - if gutters are set in theme settings they will override these
