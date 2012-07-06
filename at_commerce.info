@@ -22,18 +22,18 @@
   ;
   ; AT can load stylesheets in conditional comments from the info file.
   ;
-  ; Syntax: ie_stylesheets[media][condition] = path/to/file (path must be
+  ; Syntax: ie_stylesheets[media][condition][] = path/to/file (path must be
   ; relative to your theme root). The file name is not important.
   ;
   ; For example if you want to load a stylesheet just for IE7 use the following
   ; example (note: you need to create "ie7.css" in the /css/ directory):
   ;
-  ; ie_stylesheets[screen][IE 7] = css/ie7.css
+  ; ie_stylesheets[screen][IE 7][] = css/ie7.css
 
-  ie_stylesheets[screen][IE 6]     = css/ie-6.css
-  ie_stylesheets[screen][lte IE 7] = css/ie-lte-7.css
-  ie_stylesheets[screen][IE 8]     = css/ie-8.css
-  ie_stylesheets[screen][lte IE 9] = css/ie-lte-9.css
+  ie_stylesheets[screen][IE 6][]     = css/ie-6.css
+  ie_stylesheets[screen][lte IE 7][] = css/ie-lte-7.css
+  ie_stylesheets[screen][IE 8][]     = css/ie-8.css
+  ie_stylesheets[screen][lte IE 9][] = css/ie-lte-9.css
 
 
 
