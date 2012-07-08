@@ -33,11 +33,11 @@ function at_commerce_preprocess_html(&$vars) {
     'corner_radius_form_input_submit',
   );
   foreach ($settings_array as $setting) {
-    $vars['classes_array'][] = theme_get_setting($setting);
+    $vars['classes_array'][] = at_get_setting($setting);
   }
 
   // Special case for PIE htc rounded corners, not all themes include this
-  if (theme_get_setting('ie_corners') == 1) {
+  if (at_get_setting('ie_corners') == 1) {
     drupal_add_css($path_to_theme . '/css/ie-htc.css', array(
       'group' => CSS_THEME,
       'browsers' => array(
@@ -51,22 +51,22 @@ function at_commerce_preprocess_html(&$vars) {
 
   // Custom settings for AT Commerce
   // Content displays
-  $show_frontpage_grid = theme_get_setting('content_display_grids_frontpage') == 1 ? TRUE : FALSE;
-  $show_taxopage_grid = theme_get_setting('content_display_grids_taxonomy_pages') == 1 ? TRUE : FALSE;
+  $show_frontpage_grid = at_get_setting('content_display_grids_frontpage') == 1 ? TRUE : FALSE;
+  $show_taxopage_grid = at_get_setting('content_display_grids_taxonomy_pages') == 1 ? TRUE : FALSE;
   if ($show_frontpage_grid == TRUE || $show_taxopage_grid == TRUE) {drupal_add_js($path_to_theme . '/scripts/equalheights.js');}
   if ($show_frontpage_grid == TRUE) {
-    $cols_fpg = theme_get_setting('content_display_grids_frontpage_colcount');
+    $cols_fpg = at_get_setting('content_display_grids_frontpage_colcount');
     $vars['classes_array'][] = $cols_fpg;
     drupal_add_js($path_to_theme . '/scripts/eq.fp.grid.js');
   }
   if ($show_taxopage_grid == TRUE) {
-    $cols_tpg = theme_get_setting('content_display_grids_taxonomy_pages_colcount');
+    $cols_tpg = at_get_setting('content_display_grids_taxonomy_pages_colcount');
     $vars['classes_array'][] = $cols_tpg;
     drupal_add_js($path_to_theme . '/scripts/eq.tp.grid.js');
   }
 
   // Do stuff for the slideshow
-  if (theme_get_setting('show_slideshow') == 1) {
+  if (at_get_setting('show_slideshow') == 1) {
     // Add some js and css
     drupal_add_css($path_to_theme . '/css/styles.slideshow.css', array(
       'preprocess' => TRUE,
@@ -79,15 +79,15 @@ function at_commerce_preprocess_html(&$vars) {
     drupal_add_js($path_to_theme . '/scripts/slider.options.js');
 
     // Add some classes to do evil hiding of elements with CSS...
-    if (theme_get_setting('show_slideshow_navigation_controls') == 0) {
+    if (at_get_setting('show_slideshow_navigation_controls') == 0) {
       $vars['classes_array'][] = 'hide-ss-nav';
     }
-    if (theme_get_setting('show_slideshow_direction_controls') == 0) {
+    if (at_get_setting('show_slideshow_direction_controls') == 0) {
       $vars['classes_array'][] = 'hide-ss-dir';
     }
 
     // Write some evil inline CSS in the head, oh er..
-    $slideshow_width = check_plain(theme_get_setting('slideshow_width'));
+    $slideshow_width = check_plain(at_get_setting('slideshow_width'));
     $slideshow_css = '.flexible-slideshow,.flexible-slideshow .article-inner,.flexible-slideshow .article-content,.flexslider {max-width: ' .  $slideshow_width . 'px;}';
     drupal_add_css($slideshow_css, array(
       'group' => CSS_DEFAULT,
@@ -129,7 +129,7 @@ function at_commerce_process_page(&$vars) {
   $vars['branding_classes'] = implode(' ', $branding_classes);
 
   // Draw toggle text
-  $toggle_text = theme_get_setting('toggle_text') ? theme_get_setting('toggle_text') : t('More info');
+  $toggle_text = at_get_setting('toggle_text') ? at_get_setting('toggle_text') : t('More info');
   $vars['draw_link'] = '<a class="draw-toggle" href="#">' . check_plain($toggle_text) . '</a>';
 }
 
@@ -150,10 +150,10 @@ function at_commerce_preprocess_node(&$vars) {
   }
 
   // Add classes for the slideshow node type
-  if (theme_get_setting('show_slideshow') == 1) {
+  if (at_get_setting('show_slideshow') == 1) {
     if ($vars['node']->type == 'slideshow') {
       $vars['classes_array'][] = 'flexible-slideshow';
-      if (theme_get_setting('hide_slideshow_node_title') == 1) {
+      if (at_get_setting('hide_slideshow_node_title') == 1) {
         $vars['title_attributes_array']['class'][] = 'element-invisible';
       }
     }
@@ -161,8 +161,8 @@ function at_commerce_preprocess_node(&$vars) {
 
   // Content grids - nuke links off teasers if in a content_display
   if ($vars['view_mode'] == 'teaser') {
-    $show_frontpage_grid = theme_get_setting('content_display_grids_frontpage') == 1 ? TRUE : FALSE;
-    $show_taxopage_grid = theme_get_setting('content_display_grids_taxonomy_pages') == 1 ? TRUE : FALSE;
+    $show_frontpage_grid = at_get_setting('content_display_grids_frontpage') == 1 ? TRUE : FALSE;
+    $show_taxopage_grid = at_get_setting('content_display_grids_taxonomy_pages') == 1 ? TRUE : FALSE;
     if ($show_frontpage_grid == TRUE || $show_taxopage_grid == TRUE) {
       unset($vars['content']['links']);
     }
@@ -195,6 +195,17 @@ function at_commerce_preprocess_block(&$vars) {
   }
   if ($vars['block']->region == 'menu_bar' || $vars['block']->region == 'menu_bar_top') {
     $vars['title_attributes_array']['class'][] = 'element-invisible';
+  }
+}
+
+/**
+ * Override or insert variables into the field template.
+ */
+function at_commerce_preprocess_field(&$vars) {
+  // Vars and settings for the slideshow, we theme this directly in the field template
+  $vars['show_slideshow_caption'] = FALSE;
+  if (at_get_setting('show_slideshow_caption') == TRUE) {
+   $vars['show_slideshow_caption'] = TRUE;
   }
 }
 
