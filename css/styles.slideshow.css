@@ -2,8 +2,8 @@
 
 /* Center and remove padding */
 article.flexible-slideshow,
-article.flexible-slideshow .article-inner,
-.flexible-slideshow .article-content,
+article.flexible-slideshow .node-inner,
+.flexible-slideshow .node-content,
 .flexslider {
   margin: 0 auto;
   padding: 0;
@@ -97,7 +97,7 @@ body.hide-ss-nav .flexslider {
 }
 
 /* Be careful going below here, it could blow up... */
-.flexible-slideshow .article-content {
+.flexible-slideshow .node-content {
   position: relative;
 }
 .flexslider ul,
@@ -109,7 +109,7 @@ body.hide-ss-nav .flexslider {
 }
 
 /* Center the whole shebang */
-article.flexible-slideshow .article-inner {
+article.flexible-slideshow .node-inner {
   margin: auto;
   text-align: center;
 }

@@ -1,9 +1,9 @@
-<article id="article-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <div class="article-inner clearfix">
+<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+  <div class="node-inner clearfix">
+    <?php print render($title_prefix); ?>
 
     <?php print $unpublished; ?>
 
-    <?php print render($title_prefix); ?>
     <?php if(!empty($user_picture) || $title || (!empty($submitted) && $display_submitted)): ?>
       <header<?php print $header_attributes; ?>>
 
@@ -25,7 +25,6 @@
 
       </header>
     <?php endif; ?>
-    <?php print render($title_suffix); ?>
 
     <div<?php print $content_attributes; ?>>
     <?php
@@ -41,5 +40,6 @@
 
     <?php print render($content['comments']); ?>
 
+    <?php print render($title_suffix); ?>
   </div>
 </article>

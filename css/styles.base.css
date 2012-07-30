@@ -33,7 +33,8 @@ div.messages {
 
 /* Panel pages need negative margin equal to the gutter width applied to #content,
   this is taken care of in theme settings as per above for normal gutters */
-.page-panels #content {
+#content .panel-display,
+#content .panel-flexible {
   margin-left: -10px;
   margin-right: -10px;
 }
@@ -264,14 +265,16 @@ video {
   max-width: none;
 }
 
-/* Override max-width 100% for map displays, as much as possible anyway... */
+/* Override max-width 100% for map displays and widgets */
 #map img,
 .gmap img,
 .view-gmap img,
 .openlayers-map img,
 #getlocations_map_canvas img,
 #locationmap_map img,
-.geofieldMap img {
+.geofieldMap img,
+.views_horizontal_slider img,
+.field-widget-imagefield-crop-widget img {
   max-width: none !important;
 }
 
@@ -559,9 +562,6 @@ html.js #toggle-wrapper {
 .field-label {
   font-size: 1em;
 }
-article .field {
-  margin-bottom: 0.75em;
-}
 .field-type-commerce-price {
   font-size: 1.538em;
 }
@@ -637,6 +637,10 @@ article ul.links a {
   margin: 0;
   max-width: 47px;
   max-height: 47px;
+}
+article figcaption {
+  font-style: italic;
+  font-size: 0.9em;
 }
 
 /* Comments */

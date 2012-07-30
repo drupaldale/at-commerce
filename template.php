@@ -1,5 +1,10 @@
 <?php
 // AT commerce
+function at_commerce_preprocess(&$vars) {
+  if (!array_key_exists('adaptivetheme', list_themes())) {
+    drupal_set_message(t('Error! <a href="!link">AT Core</a> base theme not found. Please install and enable Adaptivetheme Core.', array('!link' => 'http://drupal.org/project/adaptivetheme')), 'error', false);
+  }
+}
 
 /**
  * Override or insert variables into the html template.

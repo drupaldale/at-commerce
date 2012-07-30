@@ -1,22 +1,22 @@
 /* AT Commerce Settings Styles */
 
 /* Frontpage and Taxonomy Grids */
-#main-content.content-display-grid  article.article  {
+#main-content.content-display-grid  article.node  {
   float: left;
   margin: 0 0 10px;
   min-width: 150px; /* this ensures 2cols at 320px and 4 cols at 480px (smartphone displays) and allows for the maximum setting of 8 cols at widths like 1280px or more */
 }
-.content-display-grid article .article-inner {
+.content-display-grid article .node-inner {
   padding: 5px;
 }
-.content-display-grid article .article-inner:hover {}
-.content-display-grid article.article h1{
+.content-display-grid article .node-inner:hover {}
+.content-display-grid article.node h1{
   font-size: 1.077em;
 }
-.content-display-grid article .article-content {
+.content-display-grid article .node-content {
   padding: 0 0 10px;
 }
-.content-display-grid article .article-inner img {
+.content-display-grid article .node-inner img {
   padding: 0;
   height: auto;
 }
@@ -27,32 +27,32 @@
   margin-left: 0;
   margin-right: 0;
 }
-body.front.fpcc-2 #main-content article.article,
-body.page-taxonomy.tpcc-2 #main-content article.article {
+body.front.fpcc-2 #main-content article.node,
+body.page-taxonomy.tpcc-2 #main-content article.node {
   width: 50%;
 }
-body.front.fpcc-3 #main-content article.article,
-body.page-taxonomy.tpcc-3 #main-content article.article {
+body.front.fpcc-3 #main-content article.node,
+body.page-taxonomy.tpcc-3 #main-content article.node {
   width: 33.33333333333333%;
 }
-body.front.fpcc-4 #block-system-main article.article,
-body.page-taxonomy.tpcc-4 #main-content article.article {
+body.front.fpcc-4 #block-system-main article.node,
+body.page-taxonomy.tpcc-4 #main-content article.node {
   width: 25%;
 }
-body.front.fpcc-5 #main-content article.article,
-body.page-taxonomy.tpcc-5 #main-content article.article {
+body.front.fpcc-5 #main-content article.node,
+body.page-taxonomy.tpcc-5 #main-content article.node {
   width: 20%;
 }
-body.front.fpcc-6 #main-content article.article,
-body.page-taxonomy.tpcc-6 #main-content article.article {
+body.front.fpcc-6 #main-content article.node,
+body.page-taxonomy.tpcc-6 #main-content article.node {
   width: 16.66666666666667%;
 }
-body.front.fpcc-7 #main-content article.article,
-body.page-taxonomy.tpcc-7 #main-content article.article {
+body.front.fpcc-7 #main-content article.node,
+body.page-taxonomy.tpcc-7 #main-content article.node {
   width: 14.28571428571429%;
 }
-body.front.fpcc-8 #main-content article.article,
-body.page-taxonomy.tpcc-8 #main-content article.article {
+body.front.fpcc-8 #main-content article.node,
+body.page-taxonomy.tpcc-8 #main-content article.node {
   width: 12.5%;
 }
 
@@ -157,6 +157,46 @@ body.page-taxonomy.tpcc-8 #main-content article.article {
 }
 .mma-c #menu-bar .block li a {
   text-align: left;
+}
+
+/* Image Alignment */
+.ia-l .field-type-image figure,
+.iat-l .field-type-image figure {
+  margin: 4px 15px 4px 0;
+}
+.ia-l .field-type-image figcaption,
+.iat-l .field-type-image figcaption {
+  margin: 4px 0;
+}
+
+.ia-r .field-type-image figure,
+.iat-r .field-type-image figure {
+  margin: 4px 0 4px 15px;
+}
+.ia-r .field-type-image figcaption,
+.iat-r .field-type-image figcaption {
+  margin: 4px 0;
+}
+
+.ia-c .field-type-image figure,
+.ia-n .field-type-image figure,
+.iat-c .field-type-image figure,
+.iat-n .field-type-image figure {
+  border: none;
+  padding: 10px 0;
+}
+
+.field-type-image.field-label-above {
+  margin-top: 0;
+}
+
+.field-type-image .field-label {
+  margin-bottom: 0.5em;
+}
+
+.field-type-image.field-label-inline .field-label {
+  margin-bottom: 0;
+  line-height: 1;
 }
 
 /* Bullets */
